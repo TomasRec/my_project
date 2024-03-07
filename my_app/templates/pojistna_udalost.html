@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Pojistna-udalost{% endblock %}
+
+{% block content %}
+
+<div id="pojistna-udalost-wrapper">
+
+<div id="pojistna-udalost">
+
+  <h2>Nahlásit pojistnou událost</h2>
+
+<form action="" method="POST">
+  {% csrf_token %}
+
+  <div class="input-box">
+    <label for="uzivatel">Uživatel:</label><br>
+    <input class="non-edit-input" type="text" id="uzivatel" name="uzivatel" value="{{uzivatel}}" readonly><br>
+  </div>
+  <div class="input-box">
+    <label for="predmet">Předmět:</label><br>
+    <input type="text" id="predmet" name="predmet" required><br>
+  </div>
+  <div class="input-box">
+      <label for="text_udalosti">Text pojistné události:</label>
+      <textarea class="noResize" name="text_udalosti" id="" cols="30" rows="3"></textarea>
+  </div>
+
+  <div id="pojistna-udalost-btns">
+    <div id="odeslat-udalost">
+      <button  class="vytvoritBtn" >Odeslat</button>
+      <p id="poznamka">Odesláním se administrátorovi odešle email s pojistnou událostí.</p>
+    </div>
+    
+    <div id="backBtn-wrapper">
+      <a id="backBtn" href="{% url 'pojistenci' %}"><i class='bx bx-arrow-back'></i></a>
+      <a id="backBtn" href=" {% url 'pojistenci' %} ">Zpět</a>  
+    </div>
+  
+  </div>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+
+{% endblock %}

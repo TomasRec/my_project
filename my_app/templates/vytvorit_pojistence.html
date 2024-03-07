@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Vytvořit pojištěnce{% endblock %}
+
+{% block content %}
+
+<div id="vytvorit-pojistence-wrapper">
+
+<div id="vytvorit-pojistence">
+  <h1>Vytvořit pojištěnce</h1>
+
+  <div class="input-box">
+    <div id="input-box-wrapper">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div id="vytvorit-pojistence-1">
+          <label for="name">Jméno:</label><br>
+          <input type="text" id="name" name="name" required><br>
+          <label for="surname">Příjmení:</label><br>
+          <input type="text" id="surname" name="surname" required><br>
+          <label for="email">Email:</label><br>
+          <input type="email" id="email" name="email" required><br>
+          <label for="phone">Telefon:</label><br>
+          <input type="text" id="phone" name="phone" required><br>
+        </div>
+        <div id="vytvorit-pojistence-2">
+            <label for="street">Ulice s číslem popisným:</label><br>
+            <input type="text" id="street" name="street" required><br>
+            <label for="city">Město:</label><br>
+            <input type="text" id="city" name="city" required><br>
+            <label for="psc">PSČ:</label><br>
+            <input type="text" id="psc" name="psc" required><br>
+        </div>
+       
+    </div>
+
+    <div class="vytvoritBtn-wrapper">
+      <button class="vytvoritBtn">Přidat</button>
+    </div>
+ 
+
+  </form>
+
+  </div>
+
+<div id="backBtn-wrapper">
+  <a id="backBtn" href="{% url 'pojistenci' %}"><i class='bx bx-arrow-back'></i></a>
+  <a id="backBtn" href=" {% url 'pojistenci' %} ">Zpět</a>  
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+{% endblock %}

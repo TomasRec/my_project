@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+
+<div id="seznam_pojisteni">
+
+  <div id="succes_wrapper">
+    {% for msg in messages %}
+    <p class="succesmsg">{{msg}} <span id="close_button">&times;</span></p>
+  {% endfor %}
+  </div>
+ 
+  <h2>Seznam pojištění</h2>
+  <h4>Počet pojištění: {{pocet_pojisteni}}</h4>
+
+  <table class="pojisteni-table">
+    <th>Název pojištění</th>
+    <th>Akce</th>
+    {% for pojisteni in page_obj %}
+    <tr>
+      <td>{{pojisteni.title}}</td>
+      <td>
+        <a class="deleteBtn" href="{% url 'odstranit_pojisteni' pojisteni.id %}">Odstranit</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+
+
+  <!--Stránkování = pagination-->
+<div id="pagination">
+  {% if page_obj.has_previous %}
+  <a href="?page=1"> první</a>
+  <a href="?page={{ page_obj.previous_page_number }}">předchozí</a>
+{% endif %}
+
+<span class="current">
+  Strana: {{ page_obj.number }} z {{ page_obj.paginator.num_pages }}
+</span>
+
+{% if page_obj.has_next %}
+  <a href="?page={{ page_obj.next_page_number }}">další</a>
+  <a href="?page={{ page_obj.paginator.num_pages }}">poslední</a>
+{% endif %}
+</div>
+
+  <a class="addBtn" href="{% url 'vytvorit_pojisteni' %}">Přidat nové pojištění</a>
+</div>
+
+
+
+
+
+{% endblock %}

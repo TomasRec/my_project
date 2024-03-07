@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Vytvořit pojištění{% endblock %}
+
+{% block content %}
+
+
+<div id="pridani-wrapper">
+  <h3>Vytvoření pojištění</h3>
+  <div class="hlaska-pridat">
+    <form action="" method="POST">
+      {% csrf_token %}
+      <label for="title">Název pojištění:</label><br>
+      <input type="text" id="title" name="title" required><br>
+      <div class="vytvoritBtn-wrapper-1">
+      <button class="vytvoritBtn-1">Přidat</button>
+      </div>
+    </form>
+    <div id="backBtn-wrapper">
+        <a id="backBtn" href="{% url 'pojisteni' %}"><i class='bx bx-arrow-back'></i></a>
+        <a id="backBtn" href=" {% url 'pojisteni' %} ">Zpět</a>  
+    </div>
+  
+  </div>
+</div>
+
+
+
+
+{% endblock %}

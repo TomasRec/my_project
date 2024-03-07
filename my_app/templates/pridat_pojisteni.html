@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Vytvořit pojištění{% endblock %}
+
+{% block content %}
+
+
+<div id="pridani-wrapper">
+
+<h3>Přidat pojištění pojištěnci: {{pojistenec.name}} {{pojistenec.surname}}</h3>
+
+<form action="" method="POST">
+{% csrf_token %}
+<div id="checkbox-wrapper">
+    {% for pojisteni in vsechna_pojisteni %}
+    <div id="checkbox-inner-wrapper">
+      <p><label for="pojisteni">{{pojisteni}}</label></p>
+      <input type="checkbox" name="pojisteni_list" value="{{pojisteni.pk}}"> 
+    </div>
+    {% endfor %}
+</div>
+
+<div class="hlaska-pridat-buttons">
+  <button>Přidat</button>
+</form>
+
+
+<div id="backBtn-wrapper">
+  <a id="backBtn" href="{% url 'pojistenci' %}"><i class='bx bx-arrow-back'></i></a>
+  <a id="backBtn" href=" {% url 'pojistenci' %} ">Zpět</a>  
+</div>
+
+</div>
+
+{% endblock %}

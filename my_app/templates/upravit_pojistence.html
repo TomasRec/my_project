@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Upravit pojistence{% endblock %}
+
+{% block content %}
+
+<div id="upravit-pojistence-wrapper">
+
+<div id="upravit-pojistence">
+
+
+  <h3>Upravte údaje pojištěnce: {{ pojistenec.name }} {{ pojistenec.surname }}</h3>
+
+  <div class="input-box">
+
+  
+  <form action="" method="POST">
+    {% csrf_token %}
+  
+    <div id="upravit-pojistence-part-1">
+
+      <label for="name">Jméno:</label><br>
+      <input type="text" id="name" name="name" value="{{pojistenec.name}}" required><br>
+      <label for="surname">Příjmení:</label><br>
+      <input type="text" id="surname" name="surname" value="{{pojistenec.surname}}" required><br>
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email" value="{{pojistenec.email}}" required><br>
+      <label for="phone">Telefon:</label><br>
+      <input type="text" id="phone" name="phone" value="{{pojistenec.phone}}" required><br>
+
+    </div>
+
+    <div id="upravit-pojistence-part-2">
+      
+      <label for="street">Ulice s číslem popisným:</label><br>
+      <input type="text" id="street" name="street" value="{{pojistenec.street}}" required><br>
+      <label for="city">Město:</label><br>
+      <input type="text" id="city" name="city" value="{{pojistenec.city}}" required><br>
+      <label for="psc">PSČ:</label><br>
+      <input type="text" id="psc" name="psc" value="{{pojistenec.psc}}" required><br>
+    </div>
+
+  </div>
+
+  <button id="editBtn-upravit-pojistence">Upravit</button>
+  </form>
+
+  <div id="backBtn-wrapper">
+    <a id="backBtn" href="{% url 'detail_pojistence' pojistenec.id %}"><i class='bx bx-arrow-back'></i></a>
+    <a id="backBtn" href=" {% url 'detail_pojistence' pojistenec.id %} ">Zpět</a>  
+  </div>
+
+</div>
+
+ 
+
+</div>
+
+
+
+{% endblock %}

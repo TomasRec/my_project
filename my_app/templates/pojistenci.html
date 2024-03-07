@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% block title %}Pojištenci{% endblock %}
+
+<script>
+  function akce_1(){
+    console.log("hello");
+  }
+</script>
+
+{% block content %}
+
+
+<div id="pojisteni-wrapper">
+
+<div id="pojisteni-info">
+
+<div id="pojisteni-box">
+<h2>Seznam pojištenců</h2>
+<h4>Počet pojištěnců: {{pocet_pojistencu}}</h4><br>
+<a class="udalostBtn" href="{% url 'pojistna_udalost' %}">Nahlásit pojistnou událost</a>
+<a class="addBtn" href="{% url 'vytvorit_pojistence' %}">Vytvořit nového pojištěnce</a>
+</div>
+
+</div>
+
+
+<div id="succes_wrapper">
+  {% for msg in messages %}
+  <p class="succesmsg">{{msg}} <span id="close_button">&times;</span></p>
+{% endfor %}
+</div>
+  
+
+
+
+  <table id="pojistenci-table">
+    <th >Jméno</th>
+    <th>Příjmení</th>
+    <th>Email</th>
+    <th>Sjednaná pojištění</th>
+    <th>Všechna pojištění zaplacena</th>
+    <th>Pojištěnce přidal uživatel</th>
+    <th>Akce</th>
+    {% for pojistenec in page_obj %}
+    <tr>
+      <td>{{pojistenec.name}}</td>
+      <td>{{pojistenec.surname}}</td>
+      <td>{{pojistenec.email}}</td>
+      <td>
+        {% for pojisteni in pojistenec.pojisteni.all %}
+        
+        {{pojisteni}} 
+          {% if user != pojistenec.author %}
+          <br>
+          {% endif %}
+          {% if user == pojistenec.author %}
+        <a href="{% url 'odebrat_pojisteni_pojistenci' pojistenec.id pojisteni.id %}"><i class='bx bxs-minus-circle'></i></a> <br/>
+          {% endif %}
+        {% endfor %}
+        
+        {% if user == pojistenec.author %}
+        <a class="addPlus" href="{% url 'pridat_pojisteni' pojistenec.id %}"><i class='bx bxs-plus-circle'></i></a>
+        {% endif %}
+      </td>
+      <td>
+        {% if pojistenec.isPaid is True %}
+        <p class="isPaid">ZAPLACENO</p>
+          {% if user == pojistenec.author %}
+        <a href="/set_paid/{{pojistenec.id}}?isPaid=false"><button class="changeBtn">Změnit stav</button></a>
+          {% endif %}
+        {% else  %}
+        <p class="isNotPaid">NEZAPLACENO</p>
+          {% if user == pojistenec.author %}
+        <a href="/set_paid/{{pojistenec.id}}?isPaid=true"><button class="changeBtn">Změnit stav</button></a>
+        {% endif %}
+        {% endif  %}
+      </td>
+      <td>
+        {% if pojistenec.author == None %} <!--Když je uživatel v databázi none, tak se vypíše, že byl smazaný-->
+          <p>uživatel byl smazán</p>
+        {% else  %}
+          {{pojistenec.author}}
+        {% endif %}
+      </td>
+      <td>
+        {% if user == pojistenec.author or perms.my_app.delete_pojistenec %}
+        <div id="pojisteni-edit-delete-btn">
+          <a class="editBtn" href=" {% url 'detail_pojistence' pojistenec.id %} ">Detail pojištěnce</a>
+          <a class="deleteBtn" href=" {% url 'odstranit_pojistence' pojistenec.id %} ">Odstranit</a>
+        </div>
+        {% else %}
+        <p>Upravovat tohoto pojištěnce <br> může jen jeho autor.</p>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+
+
+
+
+<!--Stránkování = pagination-->
+
+<div id="pagination-report-div">
+
+
+  <!--Report-->
+  <div id="report-div">
+  
+    <button id="reportBtn"
+    id="downloadexcel">Stáhnout report</button>
+  
+
+  </div>
+
+  <div id="pagination">
+    {% if page_obj.has_previous %}
+    <a href="?page=1"> první</a>
+    <a href="?page={{ page_obj.previous_page_number }}">předchozí</a>
+  {% endif %}
+  
+  <span class="current">
+    Strana: {{ page_obj.number }} z {{ page_obj.paginator.num_pages }}
+  </span>
+  
+  {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">další</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}">poslední</a>
+  {% endif %}
+  </div>
+  
+
+</div>
+
+</div>
+
+
+
+
+<!-- celá tabulka bez paginace pro report  -->
+<table id="pojistenci-table-report">
+  <th >Jméno</th>
+  <th>Příjmení</th>
+  <th>Email</th>
+  <th>Sjednaná pojištění</th>
+  <th>Všechna pojištění zaplacena</th>
+  <th>Pojištěnce přidal uživatel</th>
+  {% for pojistenec in pojistenci %}
+  <tr>
+    <td>{{pojistenec.name}}</td>
+    <td>{{pojistenec.surname}}</td>
+    <td>{{pojistenec.email}}</td>
+    <td>
+      {% for pojisteni in pojistenec.pojisteni.all %}{{pojisteni}} <a href="{% url 'odebrat_pojisteni_pojistenci' pojistenec.id pojisteni.id %}"><i class='bx bxs-minus-circle'></i></a> <br/>{% endfor %}
+      <a class="addPlus" href="{% url 'pridat_pojisteni' pojistenec.id %}"><i class='bx bxs-plus-circle'></i></a>
+    </td>
+    <td>
+      {% if pojistenec.isPaid is True %}
+      <p class="isPaid">ZAPLACENO</p>
+      {% else  %}
+      <p class="isNotPaid">NEZAPLACENO</p>
+      {% endif  %}
+    </td>
+    <td>
+      {% if pojistenec.author == None %} <!--Když je uživatel v databázi none, tak se vypíše, že byl smazaný-->
+        <p>uživatel byl smazán</p>
+      {% else  %}
+        {{pojistenec.author}}
+      {% endif  %}
+  </tr>
+  {% endfor %}
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<!-- stažení reportu funkce  -->
+<script>
+
+  document.getElementById("reportBtn").addEventListener("click", function() {
+    var table = document.getElementById("pojistenci-table-report");
+    var html = table.outerHTML;
+
+    // Volání funkce pro export do Excelu
+    exportToExcel(html, "report_pojistenci.xls");
+});
+
+function exportToExcel(html, filename) {
+    var blob = new Blob([html], {type: "application/vnd.ms-excel"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+{% endblock %}
