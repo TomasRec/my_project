@@ -1,0 +1,964 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+/*Ikonky: https://ionic.io/ionicons*/
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body{
+  min-height: 100vh;
+  background: url("my_background.jpg") no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+#user-nav{
+  display: inline-block;
+  color: lightgreen;
+}
+
+#user-nav-info:hover::before{
+  width: 0%;
+}
+
+table, th, tr, td{
+  border: 1px solid black;
+  text-align: center;
+  margin: 10px;
+  padding: 5px;
+}
+
+button{
+  padding: 5px;
+  margin: 5px;
+  background-color: lightcoral;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.deleteBtn{
+  padding: 5px;
+  margin: 5px;
+  background-color: lightcoral;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.deleteBtn:hover{
+  opacity: 0.9;
+}
+
+.editBtn{
+  padding: 5px;
+  margin: 5px;
+  background-color: rgb(226, 229, 38);
+  color: white;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.editBtn:hover{
+  opacity: 0.9;
+}
+
+.addBtn{
+  padding: 10px;
+  background-color: rgb(71, 46, 140);
+  color: white;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.addBtn:hover{
+  opacity: 0.9;
+}
+
+.udalostBtn{
+  padding: 10px;
+  margin-right: 10px;
+  background-color: rgb(182, 146, 67);
+  color: white;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.udalostBtn:hover{
+  opacity: 0.9;
+}
+
+.changeBtn{
+  padding: 3px;
+  margin: 5px;
+  background-color: rgb(133, 126, 153);
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.changeBtn:hover{
+  opacity: 0.9;
+}
+
+.succesmsg{
+ background-color: rgb(122, 212, 122);
+ margin: 10px;
+ padding: 10px;
+ position: relative;
+}
+
+.addPlus{
+  text-decoration: none;
+}
+
+.addPlus i{
+  color: white;
+}
+
+.isPaid {
+  display: inline-block;
+  background: green;
+  padding: 5px;
+  border-radius: 10px;
+  width: 50%;
+}
+
+.isNotPaid {
+  display: inline-block;
+  background: rgb(174, 65, 76);
+  padding: 5px;
+  border-radius: 10px;
+}
+
+/* header */
+.header{
+  backdrop-filter: blur(50px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px;
+  background: transparent;
+  z-index: 99; /* určite, jestli bude element v popředí */
+}
+
+/* navbar */
+.navbar a {
+  position: relative;
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+  margin-left: 40px;
+}
+
+.navbar a::before{
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: .3s; /* jak dlouho to trvá, než se to změní při hoveru */
+}
+
+.navbar a:hover::before{
+  width: 100%;
+}
+
+
+
+a.active {
+  color: black;
+}
+
+
+.logo {
+  font-size: 26px;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+
+/* home page */
+.project-info{
+  width: 80%;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  backdrop-filter: blur(50px);;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.project-info .home-warning{
+  color: red;
+}
+
+/* pagination */
+#pagination{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+#pagination a{
+  color: white;
+  padding: 5px;
+  text-decoration: none;
+}
+
+#pagination a:hover{
+  color: rgb(224, 188, 224);
+}
+
+
+
+
+/* seznam pojištění */
+#seznam_pojisteni{
+  margin-top: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(50px);
+  padding: 20px;
+  border-radius: 10px;
+  width: 420px;
+}
+
+#seznam_pojisteni h2, h4{
+  color: white;
+}
+ 
+#seznam_pojisteni .pojsiteni-table tr, td{
+  padding: 10px;
+  color: white;
+}
+
+#seznam_pojisteni .pojsiteni-table th{
+  width: 200px;
+  color: black;
+}
+
+
+
+/* CRUD */
+#wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  backdrop-filter: blur(50px);
+  padding: 20px 40px;
+}
+
+#checkbox-wrapper{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+#checkbox-inner-wrapper{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+#checkbox-inner-wrapper p{
+  margin-right: 10px;
+}
+
+#checkbox-inner-wrapper input{
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  accent-color: rgb(224, 188, 224);
+ 
+  }
+
+
+.hlaska-odstranit{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  backdrop-filter: blur(50px);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+
+
+#pridani-wrapper{
+  margin-top: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(50px);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.hlaska-pridat{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+.hlaska-pridat-buttons{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }
+  
+  .hlaska-pridat input{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, .2); /* přidá opacity rovnou */
+  border-radius: 40px;
+  color: white;
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+.hlaska-pridat input::placeholder{
+  color: white;
+}
+
+.hlaska-pridat input:focus{
+  border: 2px solid rgb(224, 188, 224);
+}
+
+
+
+
+/* pojisteni view */
+#pojisteni-wrapper{
+  margin-top: 40px;
+} 
+
+.pojisteni-table td{
+  padding: 15px;
+}
+
+#pojisteni-info{
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+#pojisteni-box{
+  margin-top: 20px;
+}
+
+
+#pojistenci-table{
+  color: white;
+  backdrop-filter: blur(50px);
+  margin-top: 8px;
+}
+
+#pojistenci-table th{
+  color: black;
+}
+
+
+#pojisteni-edit-delete-btn{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#pojisteni-edit-delete-btn .editBtn{
+  width: 160px;
+}
+
+#pojisteni-edit-delete-btn .deleteBtn{
+  width: 160px;
+}
+
+
+/* vytvořit pojištěnce */
+
+#vytvorit-pojistence-wrapper{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#vytvorit-pojistence{
+  border-radius: 10px;
+  color: white;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 420px;
+  background: transparent;
+  padding: 20px 40px;
+  border: 2px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(50px);
+  width: 50vmax;
+}
+
+#vytvorit-pojistence h1{
+  margin-bottom: 10px;
+}
+
+#input-box-wrapper form{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+}
+
+#vytvorit-pojistence-1{
+  margin-right: 20px;
+}
+
+.vytvoritBtn{
+  padding: 8px;
+  width: 35%;
+  font-size: 18px;
+}
+
+.vytvoritBtn:hover{
+  opacity: 0.9;
+}
+
+.vytvoritBtn-wrapper{
+  margin-top: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.vytvoritBtn-1{
+  padding: 5px;
+  width: 50%;
+  font-size: 15px;
+}
+
+.vytvoritBtn-1:hover{
+  opacity: 0.9;
+}
+
+.vytvoritBtn-wrapper-1{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+/* detail pojištěnce */
+#detail-pojistence-wrapper{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#detail{
+  border-radius: 10px;
+  color: black;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 520px;
+  background: transparent;
+  padding: 10px 20px;
+  border: 2px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(50px);  
+}
+
+#detail h1{
+  color: white;
+}
+
+#detail-wrapper{
+  display: flex;
+  justify-content: center;
+}
+
+#detail-wrapper-part-1{
+  margin-right: 10px;
+}
+
+
+#addBtn-detail-pojistence{
+  padding: 5px;
+  background-color: rgb(71, 46, 140);
+  color: white;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  width: 50%;
+}
+
+#addBtn-detail-pojistence:hover{
+  opacity: 0.9;
+}
+
+#editBtn-detail-pojistence{
+  padding: 5px;
+  margin: 5px;
+  background-color: rgb(226, 229, 38);
+  color: white;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  width: 50%;
+}
+
+#editBtn-detail-pojistence:hover{
+  opacity: 0.9;
+}
+
+
+#btns-detail-wrapper{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* upravit pojištěnce */
+
+#upravit-pojistence-wrapper{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#upravit-pojistence{
+  border-radius: 10px;
+  color: black;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 520px;
+  background: transparent;
+  padding: 10px 20px;
+  border: 2px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(50px);  
+}
+
+#upravit-pojistence h3{
+  margin-bottom: 10px;
+}
+
+#editBtn-upravit-pojistence{
+  padding: 8px;
+  margin-top: 10px;
+  background-color: rgb(226, 229, 38);
+  color: white;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  width: 50%;
+  font-size: 18px;
+}
+
+#editBtn-upravit-pojistence:hover{
+  opacity: 0.9;
+}
+
+#upravit-pojistence .input-box form{
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  flex-direction: row;
+}
+
+#upravit-pojistence-part-1{
+  margin-right: 10px;
+}
+
+#upravit-pojistence-part-1{
+  height: 100%;
+}
+
+
+
+/* login & registration */
+
+#registration{
+  margin-top: 20px;
+  border-radius: 10px;
+  color: white;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 420px;
+  background: transparent;
+  padding: 30px 40px;
+  border: 2px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(50px);
+}
+
+#registration{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#poznamka{
+  font-size: 10px;
+}
+
+#login-wrapper{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login{
+  border-radius: 10px;
+  color: white;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 420px;
+  background: transparent;
+  padding: 30px 40px;
+  border: 2px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(50px); /* rozmaže pozadí */
+   /*transform: scale(0); */ /* má velikost 0 a po kliknutí na login se zvětší na 1, nakonec nepoužiju */
+   /*transition: transform .5s ease, height .5s ease; */
+}
+
+.login h1{
+  font-size: 36px;
+  text-align: center; /* Zarovná text do středu */
+} 
+
+#registration h1{
+  font-size: 36px;
+  text-align: center; /* Zarovná text do středu */
+} 
+
+#registration form{
+  width: 90%;
+}
+
+
+
+.login .input-box{
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 30px 0; /* mezera nahoře a dole 30, vpravo a vlevo 0 */
+}
+
+#registration .input-box{
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 30px 0; /* mezera nahoře a dole 30, vpravo a vlevo 0 */
+}
+
+.input-box input{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, .2); /* přidá opacity rovnou */
+  border-radius: 40px;
+  color: white;
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+.input-box input::placeholder{
+  color: white;
+}
+
+.input-box input:focus{
+  border: 2px solid rgb(224, 188, 224);
+}
+
+.input-box i{
+  position: absolute;
+  right: 20px;
+  top: 100%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: white;
+}
+
+
+.login .btn{
+  width: 100%;
+  height: 45px;
+  background: white;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+
+.login .btn:hover{
+  background: rgb(224, 188, 224);
+}
+
+#registration .btn{
+  width: 100%;
+  height: 45px;
+  background: white;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+
+#registration .btn:hover{
+  background: rgb(224, 188, 224);
+}
+
+#backBtn{
+  text-decoration: none;
+  color: white;
+}
+
+#backBtn-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper .register-link{
+  font-size: 14px;
+  text-align: center;
+  margin-top: 20px;
+  margin: 20px 0 15px;
+  color: white;
+}
+
+.register-link p a{
+  color: plum;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-link p a:hover{
+  text-decoration: underline;
+}
+
+.vystraha-login{
+  font-size: 12px;
+  color: red;
+}
+
+
+/* pop-up tlačítko pro zavírání */
+
+#succes_wrapper {
+  display: inline-block;
+  position: relative;
+  color: white;
+}
+
+#before-succes{
+  position: relative;
+  top: 55px;
+}
+
+#close_button {
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: -7px;
+  right: 0;
+}
+
+
+/* pojistná událost */
+#pojistna-udalost-wrapper{
+  margin-top: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#pojistna-udalost{
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 620px;
+  background: transparent;
+  padding: 30px 40px;
+  border: 2px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(50px);
+}
+
+#pojistna-udalost form .input-box .non-edit-input{
+  color: darkgrey;
+}
+
+#pojistna-udalost h2{
+  text-align: center; /* Zarovná text do středu */
+} 
+
+#pojistna-udalost form{
+  width: 90%;
+}
+
+#pojistna-udalost-btns{
+  margin-top: 100px; 
+}
+
+#pojistna-udalost form #odeslat-udalost{
+  text-align: center;
+}
+
+#pojistna-udalost .input-box{
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 30px 0; /* mezera nahoře a dole 30, vpravo a vlevo 0 */
+}
+
+
+textarea.noResize{
+  resize:none; 
+  width: 100%;
+  height: 120px;
+  width: 100%;
+  background: transparent;
+  outline-color: rgb(224, 188, 224);
+  border: 2px solid rgba(255, 255, 255, .2); /* přidá opacity rovnou */
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+
+/* pagination & report button */
+#pagination-report-div{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  position: relative;
+}
+
+#report-div{
+  position: absolute;
+  left: 10px;
+  top: -10px;
+}
+
+#reportBtn{
+  font-size: 12px;
+  background-color: rgb(93, 160, 120);
+}
+
+#reportBtn:hover{
+  opacity: 0.9;
+}
+
+/* report table */
+#pojistenci-table-report{
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
