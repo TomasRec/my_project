@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Přihlásit{% endblock %}
+
+{% block content %}
+
+<div id="before-succes">
+  <div id="succes_wrapper">
+    {% for msg in messages %}
+    <p class="succesmsg">{{msg}} <span id="close_button">&times;</span></p>
+  {% endfor %}
+  </div>
+</div>
+
+<div id="login-wrapper">
+
+  <div class="login">
+
+    <form action="" method="post">
+      {% csrf_token %}
+      <h1>Přihlášení</h1>
+      <div class="input-box">
+        <label for="username">Uživatelské jméno</label><br>
+        <input type="text" placeholder="" name="username" id="username" required><br><br>
+        <i class='bx bxs-user'></i>
+      </div>
+      <div class="input-box">
+        <label for="password1">Heslo</label><br>
+        <input type="password" placeholder="" name="password1" id="password1" required><br><br>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+      <p class="vystraha-login">{{hlaska}}</p>
+      
+      <button id="loginBtn" type="submit" class="btn">Přihlásit</button>
+  
+      <div class="register-link">
+        <p>Nemáš účet? <a href="/sign_up">Zaregistruj se.</a></p>
+      </div>
+  
+    </form>
+  
+  </div>
+
+</div>
+
+ 
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Registrace{% endblock %}
+
+
+{% block content %}
+
+<div id="registration-wrapper">
+
+  <div id="registration">
+
+    <form action="" method="post">
+      {% csrf_token %}
+      <h1>Registrace</h1>
+      <div class="input-box">
+        <label for="username">Uživatelské jméno</label><br>
+        <input type="text" placeholder="" name="username" id="username" required><br><br>
+        <i class='bx bxs-user'></i>
+      </div>
+      <div class="input-box">
+        <label for="email">E-mail</label><br>
+        <input type="email" placeholder="" name="email" id="email" required><br><br>
+        <i class='bx bxs-envelope'></i>
+      </div>
+      <div class="input-box">
+        <label for="password1">Heslo</label><br>
+        <input type="password" placeholder="" name="password1" id="password1" required><br><br>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+      <div class="input-box">
+        <label for="password2">Zopakovat heslo</label><br>
+        <input type="password" placeholder="" name="password2" id="password2" required><br><br>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+        <p id="poznamka">Heslo musí být alespoň 8 znaků dlouhé a musí obsahovat číslici.</p>
+
+      <p class="vystraha-login">{{hlaska}}</p>
+      
+      <button id="loginBtn" type="submit" class="btn">Registrovat</button>
+  
+    </form>
+  
+  </div>
+  
+</div>
+
+
+
+
+{% endblock %}
