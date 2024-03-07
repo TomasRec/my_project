@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Smazat{% endblock %}
+
+{% block content %}
+
+
+<div class="hlaska-odstranit">
+
+<p>Chcete odebrat pojištění "{{pojisteni.title}}" pojištěnci {{pojistenec.name}} {{pojistenec.surname}}?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+<button>Ano</button>
+</form>
+  
+<div id="backBtn-wrapper">
+  <a id="backBtn" href="{% url 'pojistenci' %}"><i class='bx bx-arrow-back'></i></a>
+  <a id="backBtn" href=" {% url 'pojistenci' %} ">Zpět</a>  
+</div>
+
+</div>
+
+
+
+
+{% endblock %}

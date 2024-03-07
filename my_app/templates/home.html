@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="project-info">
+    <h1>Na této stránce se nachází můj závěrečný projekt.</h1>
+
+    {% if user.is_authenticated %}
+    <h3>Jako přihlášený uživatel si můžeš obsah zobrazit na záložce "Pojištěnci" a "Pojištění".</h3>
+    {% else %}
+    <h3 class="home-warning">Obsah může vidět jen přihlášený uživatel. Přihlaš se na záložce "Přihlásit".</h3>
+    {% endif %}
+
+    <ul>
+      <p>Uživateli přijde po registraci uvítací email.</p>
+      <p>Pojištěnce lze vytvořit, upravit a smazat.</p>
+      <p>Pojištěncům lze přidat a odebrat pojištění.</p>
+      <p>Smazat a upravit pojištěnce může jen uživatel, který ho vytvořil.</p>
+      <p>Administrátorovi lze nahlásit pomocí formuláře pojistnou událost, která se odešle na jeho mail.</p>
+      <p>Tabulku lze stáhnout jako report v excelu.</p>
+    </ul>
+  
+  
+  </div>
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'my_app/styl_6.css' %}" type="text/css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script src="{% static 'my_app/my_script.js' %}"></script>
+  <script defer src="{% static 'my_app/my_script.js' %}"></script>
+  <title>Moje Aplikace</title>
+  <title>{% block title %}Moje Aplikace{% endblock %}</title>
+</head>
+<body>
+
+  <header class="header">
+    <a href="/" class="logo">Moje Aplikace</a>
+  
+    <nav class="navbar" id="navbar">
+      <a class="{% if request.path == '/'%}active{% endif %}" href="/">Domů</a>
+      <a class="{% if request.path == '/pojistenci/' %}active{% endif %}" href="/pojistenci">Pojištěnci</a>
+      <a class="{% if request.path == '/pojisteni/' %}active{% endif %}" href="/pojisteni">Pojištění</a>
+      {% if user.is_authenticated %}
+      <a href="/logout">Odhlásit</a>
+      <a id="user-nav-info">Přihlášen jako: <p id="user-nav">{{ user.username }}</p></a>
+      {% else %}
+      <a class="{% if request.path == '/login/' %}active{% endif %}" href="/login">Přihlásit</a>
+      <a class="{% if request.path == '/sign_up/' %}active{% endif %}" href="/sign_up">Registrovat</a>
+      {% endif %}
+    </nav>
+  </header>
+
+
+
+  {% block content %} {% endblock %}
+
+</body>
+
+</html>

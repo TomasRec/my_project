@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}Vytvořit pojištěnce{% endblock %}
+
+{% block content %}
+
+
+<div id="detail-pojistence-wrapper">
+
+<div id="detail">
+
+  <h1>Detail pojištěnce</h1>
+
+  <div id="detail-wrapper">
+    <div id="detail-wrapper-part-1">
+      <p>Jméno:</p>
+      <p>Příjmení:</p>
+      <p>Email:</p>
+      <p>Telefon:</p>
+      <p>Ulice:</p>
+      <p>Město:</p>
+      <p>PSČ:</p>
+      <p>Vše zaplaceno:</p>
+      <p>Sjednaná pojištění:</p>
+    </div>  
+
+    <div id="detail-wrapper-part-2">
+      <p>{{pojistenec.name}}</p>
+      <p>{{pojistenec.surname}}</p>
+      <p>{{pojistenec.email}}</p>
+      <p>{{pojistenec.phone}}</p>
+      <p>{{pojistenec.street}}</p>
+      <p>{{pojistenec.city}}</p>
+      <p>{{pojistenec.psc}}</p>
+      {% if pojistenec.isPaid %}
+      <p>Zaplaceno</p>
+      {% else %}
+      <p>Nezaplaceno</p>
+      {% endif %}
+      <p id="detail-pojisteni"> {% for pojisteni in pojistenec.pojisteni.all %}{{pojisteni}} <br>{% endfor %}</p>
+    </div>
+
+  </div>
+
+
+<div id="btns-detail-wrapper">
+  <a id="addBtn-detail-pojistence" href="{% url 'pridat_pojisteni' pojistenec.id %}">Přidat pojištění</a>
+  <a id="editBtn-detail-pojistence" href="{% url 'upravit_pojistence' pojistenec.id %}">Upravit údaje</a>
+</div>
+
+
+
+<div id="backBtn-wrapper">
+  <a id="backBtn" href="{% url 'pojistenci' %}"><i class='bx bx-arrow-back'></i></a>
+  <a id="backBtn" href=" {% url 'pojistenci' %} ">Zpět</a>  
+</div>
+
+</div>
+  
+
+
+</div>
+
+
+{% endblock %}
